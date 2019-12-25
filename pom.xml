@@ -38,7 +38,7 @@
 		<dependency>
 			<groupId>org.owasp.antisamy</groupId>
 			<artifactId>antisamy</artifactId>
-			<version>1.5.3</version>
+			<version>1.5.8</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -127,8 +127,8 @@
 				<version>3.8.0</version>
 				<configuration>
 					<encoding>utf-8</encoding>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<!-- gen eclipse project -->
