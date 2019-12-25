@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<display-name>SampleWebapp</display-name>
+	
+	<filter>
+		<filter-name>EscapeXssFilter</filter-name>
+		<filter-class>com.m.filter.EscapeXssFilter</filter-class>		
+	</filter>
+	<filter-mapping>
+		<filter-name>EscapeXssFilter</filter-name>
+		<url-pattern>/testXssFilter/testXssFilter.jsp</url-pattern>
+	</filter-mapping>	
+	
+	<filter>
+		<filter-name>XssFilter</filter-name>
+		<filter-class>com.m.filter.XssFilter</filter-class>
+		<init-param>
+			<param-name>warningPage</param-name>
+			<param-value></param-value><!-- 警示頁面位置 -->
+		</init-param>
+		<init-param>
+			<param-name>FILTER_MODE</param-name>
+			<param-value>false</param-value><!-- true: 過濾模式，false: 阻斷模式 -->
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>XssFilter</filter-name>
+		<url-pattern>/testXssFilter/*</url-pattern>
+	</filter-mapping>	
+
+ 	<filter>
+		<filter-name>XfsFilter</filter-name>
+		<filter-class>com.m.filter.XfsFilter</filter-class>
+		<init-param>
+			<param-name>options</param-name>
+			<param-value>DENY</param-value>	
+			<!--  
+			· DENY
+				Deny all attempts to frame the page
+			· SAMEORIGIN
+				The page can be framed by another page only if it belongs to the same origin as the page being framed
+			· ALLOW-FROM origin
+				Developers can specify a list of trusted origins in the origin attribute. 
+			-->					
+		</init-param>		
+	</filter>	
+	<filter-mapping>
+		<filter-name>XfsFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<description></description>
+		<display-name>SampleServlet</display-name>
+		<servlet-name>SampleServlet</servlet-name>
+		<servlet-class>com.m.SampleServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SampleServlet</servlet-name>
+		<url-pattern>/SampleServlet</url-pattern>
+	</servlet-mapping>
+</web-app>
